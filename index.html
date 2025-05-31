@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cuestionario de Monomios</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    h2 {
+      color: #005f73;
+    }
+    input, button {
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1em;
+    }
+    button {
+      background-color: #0a9396;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #005f73;
+    }
+    #temporizador {
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div id="registro">
+    <h2>Registro de Participante</h2>
+    <input type="text" id="nombre" placeholder="Ingresa tu nombre" required>
+    <button onclick="iniciarCuestionario()">&iexcl;Comenzar!</button>
+  </div>
+
+  <div id="cuestionario" style="display:none;">
+    <h2>Cuestionario de Suma de Monomios con Resoluci&oacute;n de Problemas</h2>
+    <div id="temporizador">Tiempo restante: <span id="tiempo">90</span> segundos</div>
+    <form id="formulario">
+      <div>
+        <p>1. Si Juan tiene 3x manzanas y luego le dan 4x m&aacute;s, &iquest;cu&aacute;ntas tiene en total?</p>
+        <label><input type="radio" name="q1" value="a"> 7x</label><br>
+        <label><input type="radio" name="q1" value="b"> 12x</label><br>
+        <label><input type="radio" name="q1" value="c"> x</label>
+      </div>
+      <div>
+        <p>2. Una tienda tiene 5a<sup>2</sup> camisetas en stock y recibe un nuevo env&iacute;o de 2a<sup>2</sup>. &iquest;Cu&aacute;l es el total?</p>
+        <label><input type="radio" name="q2" value="a"> 7a<sup>2</sup></label><br>
+        <label><input type="radio" name="q2" value="b"> 10a</label><br>
+        <label><input type="radio" name="q2" value="c"> 3a<sup>2</sup></label>
+      </div>
+      <div>
+        <p>3. En una f&aacute;brica, se producen 6y tornillos el lunes y 9y el martes. &iquest;Cu&aacute;ntos tornillos se produjeron en total?</p>
+        <label><input type="radio" name="q3" value="a"> 15y</label><br>
+        <label><input type="radio" name="q3" value="b"> 6y + 9</label><br>
+        <label><input type="radio" name="q3" value="c"> 3y</label>
+      </div>
+      <div>
+        <p>4. Pedro recolecta -2z naranjas por la ma&ntilde;ana y luego recolecta 5z por la tarde. &iquest;Cu&aacute;ntas naranjas recolect&oacute; en total?</p>
+        <label><input type="radio" name="q4" value="a"> 3z</label><br>
+        <label><input type="radio" name="q4" value="b"> -7z</label><br>
+        <label><input type="radio" name="q4" value="c"> -3z</label>
+      </div>
+      <div>
+        <p>5. Si en un d&iacute;a se venden 8b galletas y al siguiente 3b m&aacute;s, &iquest;cu&aacute;ntas se han vendido en los dos d&iacute;as?</p>
+        <label><input type="radio" name="q5" value="a"> 11b</label><br>
+        <label><input type="radio" name="q5" value="b"> 5b</label><br>
+        <label><input type="radio" name="q5" value="c"> 24b</label>
+      </div>
+    </form>
+    <button onclick="enviarRespuestas()">&iexcl;Enviar!</button>
+  </div>
+
+  <div id="resultado" style="display:none;">
+    <h2>Resultado del Cuestionario</h2>
+    <p><strong>Participante:</strong> <span id="nombreParticipante"></span></p>
+    <table>
+      <thead>
+        <tr><th>Pregunta</th><th>Tu Respuesta</th><th>Correcta</th></tr>
+      </thead>
+      <tbody id="tablaResultados"></tbody>
+    </table>
+    <p><strong>Puntaje:</strong> <span id="puntajeFinal"></span>/5</p>
+  </div>
+
+  <script>
+    const respuestasCorrectas = ['a', 'a', 'a', 'a', 'a'];
+    let tiempoRestante = 90;
+
+    let temporizador;
+
+    function iniciarCuestionario() {
+      const nombre = document.getElementById('nombre').value.trim();
+      if (!nombre) {
+        alert('¡Por favor, ingresa tu nombre!');
+        return;
+      }
+      document.getElementById('registro').style.display = 'none';
+      document.getElementById('cuestionario').style.display = 'block';
+      temporizador = setInterval(actualizarTiempo, 1000);
+    }
+
+    function actualizarTiempo() {
+      tiempoRestante--;
+      document.getElementById('tiempo').textContent = tiempoRestante;
+      if (tiempoRestante <= 0) {
+        clearInterval(temporizador);
+        enviarRespuestas();
+      }
+    }
+
+    function enviarRespuestas() {
+      clearInterval(temporizador);
+      document.getElementById('cuestionario').style.display = 'none';
+      document.getElementById('resultado').style.display = 'block';
+
+      const nombre = document.getElementById('nombre').value;
+      document.getElementById('nombreParticipante').textContent = nombre;
+
+      let puntaje = 0;
+      const tabla = document.getElementById('tablaResultados');
+      tabla.innerHTML = '';
+
+      for (let i = 1; i <= 5; i++) {
+        const respuestaUsuario = document.querySelector(`input[name="q${i}"]:checked`);
+        const valor = respuestaUsuario ? respuestaUsuario.value : 'No respondida';
+        const correcta = respuestasCorrectas[i - 1];
+
+        if (valor === correcta) puntaje++;
+
+        const fila = `<tr>
+          <td>${i}</td>
+          <td>${valor}</td>
+          <td>${correcta}</td>
+        </tr>`;
+        tabla.innerHTML += fila;
+      }
+
+      document.getElementById('puntajeFinal').textContent = puntaje;
+    }
+  </script>
+</body>
+</html>
