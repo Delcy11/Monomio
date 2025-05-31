@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cuestionario de Monomios</title>
+  <title>Cuestionario de Resta de Monomios</title>
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -54,38 +54,38 @@
   </div>
 
   <div id="cuestionario" style="display:none;">
-    <h2>Cuestionario de Suma de Monomios con Resoluci&oacute;n de Problemas</h2>
+    <h2>Cuestionario de Resta de Monomios con Resoluci&oacute;n de Problemas</h2>
     <div id="temporizador">Tiempo restante: <span id="tiempo">90</span> segundos</div>
     <form id="formulario">
       <div>
-        <p>1. Si Juan tiene 3x manzanas y luego le dan 4x m&aacute;s, &iquest;cu&aacute;ntas tiene en total?</p>
-        <label><input type="radio" name="q1" value="a"> 7x</label><br>
-        <label><input type="radio" name="q1" value="b"> 12x</label><br>
-        <label><input type="radio" name="q1" value="c"> x</label>
+        <p>1. Si tienes 7x y das 3x, &iquest;cu&aacute;nto te queda?</p>
+        <label><input type="radio" name="q1" value="a"> 4x</label><br>
+        <label><input type="radio" name="q1" value="b"> 10x</label><br>
+        <label><input type="radio" name="q1" value="c"> -4x</label>
       </div>
       <div>
-        <p>2. Una tienda tiene 5a<sup>2</sup> camisetas en stock y recibe un nuevo env&iacute;o de 2a<sup>2</sup>. &iquest;Cu&aacute;l es el total?</p>
+        <p>2. Una caja conten&iacute;a 9a<sup>2</sup> pelotas, y se sacaron 2a<sup>2</sup>. &iquest;Cu&aacute;ntas quedan?</p>
         <label><input type="radio" name="q2" value="a"> 7a<sup>2</sup></label><br>
-        <label><input type="radio" name="q2" value="b"> 10a</label><br>
-        <label><input type="radio" name="q2" value="c"> 3a<sup>2</sup></label>
+        <label><input type="radio" name="q2" value="b"> 11a<sup>2</sup></label><br>
+        <label><input type="radio" name="q2" value="c"> -7a<sup>2</sup></label>
       </div>
       <div>
-        <p>3. En una f&aacute;brica, se producen 6y tornillos el lunes y 9y el martes. &iquest;Cu&aacute;ntos tornillos se produjeron en total?</p>
-        <label><input type="radio" name="q3" value="a"> 15y</label><br>
-        <label><input type="radio" name="q3" value="b"> 6y + 9</label><br>
-        <label><input type="radio" name="q3" value="c"> 3y</label>
+        <p>3. Si restas 5y de 8y, &iquest;cu&aacute;l es el resultado?</p>
+        <label><input type="radio" name="q3" value="a"> 3y</label><br>
+        <label><input type="radio" name="q3" value="b"> -3y</label><br>
+        <label><input type="radio" name="q3" value="c"> 13y</label>
       </div>
       <div>
-        <p>4. Pedro recolecta -2z naranjas por la ma&ntilde;ana y luego recolecta 5z por la tarde. &iquest;Cu&aacute;ntas naranjas recolect&oacute; en total?</p>
-        <label><input type="radio" name="q4" value="a"> 3z</label><br>
-        <label><input type="radio" name="q4" value="b"> -7z</label><br>
-        <label><input type="radio" name="q4" value="c"> -3z</label>
+        <p>4. Tienes -4z y le quitas -2z. &iquest;Cu&aacute;l es el resultado?</p>
+        <label><input type="radio" name="q4" value="a"> -2z</label><br>
+        <label><input type="radio" name="q4" value="b"> -6z</label><br>
+        <label><input type="radio" name="q4" value="c"> -8z</label>
       </div>
       <div>
-        <p>5. Si en un d&iacute;a se venden 8b galletas y al siguiente 3b m&aacute;s, &iquest;cu&aacute;ntas se han vendido en los dos d&iacute;as?</p>
-        <label><input type="radio" name="q5" value="a"> 11b</label><br>
-        <label><input type="radio" name="q5" value="b"> 5b</label><br>
-        <label><input type="radio" name="q5" value="c"> 24b</label>
+        <p>5. Se vendieron 12b galletas y luego se devolvieron 5b. &iquest;Cu&aacute;ntas ventas netas hubo?</p>
+        <label><input type="radio" name="q5" value="a"> 7b</label><br>
+        <label><input type="radio" name="q5" value="b"> 17b</label><br>
+        <label><input type="radio" name="q5" value="c"> 5b</label>
       </div>
     </form>
     <button onclick="enviarRespuestas()">&iexcl;Enviar!</button>
@@ -106,7 +106,6 @@
   <script>
     const respuestasCorrectas = ['a', 'a', 'a', 'a', 'a'];
     let tiempoRestante = 90;
-
     let temporizador;
 
     function iniciarCuestionario() {
@@ -161,3 +160,4 @@
   </script>
 </body>
 </html>
+
